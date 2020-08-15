@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //数组去重
+    var arr = [20, 25, 66, 78, 25, 66, 39]; //[20,25,66,78,39]
+
+    // //1.冒泡法去重
+
+    // //1.1 先对数组进行排序
+
+    // for (var i = 0; i < arr.length - 1; i++) {
+    //     for (var j = 0; j < arr.length - 1 - i; j++) {
+    //         if (arr[j] > arr[j + 1]) {
+    //             var temp = arr[j];
+    //             arr[j] = arr[j + 1];
+    //             arr[j + 1] = temp;
+    //         };
+    //     };
+    // };
+    // console.log(arr);
+
+    // //1.2 遍历排序后的数组，如果元素与下一个元素不相等则添加到新数组中newArr
+    // var newArr = []; //声明空数组存储去重后的数组
+    // for (var i = 0; i < arr.length; i++) {
+    //     if (arr[i] != arr[i + 1]) {
+    //         newArr[newArr.length] = arr[i];
+    //     };
+    // };
+
+    // console.log(newArr);
+
+    //2.开关思想去重
+    /*开关思想：某种操作结果只有两种状态  使用布尔类型表示这两种状态
+        1.提出假设
+        var isZai = true;
+        2.验证假设
+        //3.根据开关结果实现需求
+         */
+
+    //1.声明空数组
+    var newArr = [];
+    //2.遍历arr检查在不在newArr中
+    for (var i = 0; i < arr.length; i++) {
+        console.log(arr[i]);
+        //检查在不在newArr中
+        //1.提出假设:假设不在
+        var buZai = true;
+        //2.验证
+        for (var j = 0; j < newArr.length; j++) {
+            if (arr[i] == newArr[j]) {
+                //假设被推翻
+                buZai = false;
+                //一旦发现有重复元素，后面没有必要验证
+                break;
+            };
+        };
+
+        //3.根据开关结果实现需求  如果不在，则添加到newArr中
+        if (buZai) {
+            newArr[newArr.length] = arr[i];
+        };
+    };
+
+    console.log(newArr);
+
+    </script>
+    <script>
+
+    //3. 附加题： 使用对象实现数组去重 *
+        //要求： 使用一个for循环
+
+        var arr = [20,25,66,39,88,25,66,40];
+        var newArr = [];
+        var obj = {};
+        for(var i = 0;i<arr.length;i++){
+            if(obj[arr[i]] == undefined){
+                //这个元素没有重复，添加到新数组中
+                newArr[newArr.length] = arr[i];
+                //出现之后添加到对象中
+                obj[arr[i]] = 1;
+            };
+        };
+
+    // 4 set方法去重
+    var arr1 = ['a', 'b', 'd', 'f', 'k']
+        var arr2 = ['b', 'c', 'g', 'h', 'f']
+        // 将两个数组进行合并， 去除重复的内容
+        var res = new Set([...arr1, ...arr2])//得到的是一个对象,需要再转化为数组(见5)
+        // console.log(res.size)
+        // res.add('z')
+        // res.delete('a')
+        // var bool = res.has('b')
+        // console.log(bool)
+        res.clear()
+        console.log(res)
+
+        //5 Set 可以通过一个数组初始化
+        let set = new Set([1, 2, 1, 5, 1, 6]);
+          console.log(set);//{1, 2, 5, 6}
+
+        // 数组去重
+          let arr = [...set];
+          console.log(arr);//[1, 2, 5, 6]
+
+    </script>
+</body>
+</html>

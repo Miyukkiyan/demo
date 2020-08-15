@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>双向绑定最最最初级demo</title>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <div id="app">
+            <input type="text" id="txt">
+            <p id="show-txt"></p>
+        </div>
+    </body>
+    <script>
+        var obj={}
+        Object.defineProperty(obj,'txt',{
+            get:function(){
+                return obj
+            },
+            set:function(newValue){
+                document.getElementById('txt').value = newValue
+                document.getElementById('show-txt').innerHTML = newValue
+            }
+        })
+        document.addEventListener('keyup',function(e){
+            obj.txt = e.target.value
+        })
+    </script>
+</html>
